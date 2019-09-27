@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 
 class LoginForm extends Component {
   state = {
@@ -10,6 +11,15 @@ class LoginForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+  };
+
+  onSubmitHandle = event => {
+    event.preventDefault();
+    this.props.onSubmitHandle(this.state);
+
+    Axios.post("/waiting", this.state).then(response =>
+      console.log(response.data)
+    );
   };
 
   render() {
@@ -33,8 +43,10 @@ class LoginForm extends Component {
           onChange={event => this.change(event)}
         />
         <br></br>
-        <button onClick={event => this.onSubmit(event)}>대기하기</button>
+        <button onClick={event => this.onSubmitHandle(event)}>대기하기</button>
       </form>
     );
   }
 }
+
+export default LoginForm;

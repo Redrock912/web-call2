@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import axios from "axios";
+import LoginForm from "./components/loginform";
 import "./App.css";
 
 class App extends Component {
@@ -15,12 +16,15 @@ class App extends Component {
   //     .then(res => console.log(res.data.length));
   // }
 
-  onSubmit() {}
+  onSubmit = fields => {
+    this.setState({ fields });
+    console.log("Received components : ", fields);
+  };
 
   render() {
     return (
       <div className="App">
-        <form></form>
+        <LoginForm onSubmitHandle={fields => this.onSubmit(fields)}></LoginForm>
       </div>
     );
   }

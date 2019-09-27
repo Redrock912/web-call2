@@ -4,5 +4,3 @@ npm-debug.log
 .DS_Store
 .config
 
-/client/node_modules
-npm-debug.log

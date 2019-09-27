@@ -3,7 +3,9 @@ var router = express.Router();
 
 var data = [];
 /* GET home page. */
-router.post("/", function(req, res, next) {
+
+router.post("/", function(req, res) {
+  console.log("this is the request");
   console.log(req.body);
 
   data.push(req.body);
