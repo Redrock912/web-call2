@@ -17,9 +17,13 @@ class LoginForm extends Component {
     event.preventDefault();
     this.props.onSubmitHandle(this.state);
 
-    Axios.post("/waiting", this.state).then(response =>
-      console.log(response.data)
-    );
+    Axios.post("/waiting", this.state).then(function(response) {
+      if (response.data.queue == undefined) {
+        alert("추가되었습니다");
+      } else {
+        alert("현재 대기번호는 " + response.data.queue);
+      }
+    });
   };
 
   render() {

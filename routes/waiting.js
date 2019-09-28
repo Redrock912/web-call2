@@ -6,11 +6,22 @@ var data = [];
 
 router.post("/", function(req, res) {
   console.log("this is the request");
-  console.log(req.body);
 
-  data.push(req.body);
+  console.log(req.body.numbers);
+  //let index = data.findIndex(function(node) {});
 
-  res.send(data);
+  let index = data.findIndex(function(node) {
+    return (
+      node.numbers === req.body.numbers && node.password === req.body.password
+    );
+  });
+
+  if (index == -1) {
+    data.push(req.body);
+    res.send(data);
+  } else {
+    res.send({ queue: index });
+  }
 });
 
 module.exports = router;
